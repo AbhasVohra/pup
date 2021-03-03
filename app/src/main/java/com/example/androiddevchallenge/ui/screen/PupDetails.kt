@@ -13,16 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.example.androiddevchallenge.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,7 +51,6 @@ import com.example.androiddevchallenge.data.PupModel
 import com.example.androiddevchallenge.ui.component.PupAttribute
 import com.example.androiddevchallenge.ui.theme.purple500
 import com.example.androiddevchallenge.utils.loadImage
-
 
 @Composable
 fun PupDetails(pet: PupModel, navigateBack: () -> Unit) {
@@ -57,26 +71,26 @@ fun PupDetails(pet: PupModel, navigateBack: () -> Unit) {
                     modifier = Modifier
                         .fillMaxWidth(.7f)
                         .height(50.dp),
-                    onClick = {}, colors = ButtonDefaults.textButtonColors(
+                    onClick = {},
+                    colors = ButtonDefaults.textButtonColors(
                         backgroundColor = MaterialTheme.colors.secondary
                     )
                 ) {
                     Text(
                         text = "Adopt",
-                        style = MaterialTheme.typography.button.copy(color = MaterialTheme.colors.background))
-
+                        style = MaterialTheme.typography.button.copy(color = MaterialTheme.colors.background)
+                    )
                 }
 
                 IconButton(onClick = navigateBack) {
-                    Row(modifier = Modifier.padding(end=10.dp)) {
+                    Row(modifier = Modifier.padding(end = 10.dp)) {
                         Icon(
-                            modifier=Modifier.size(36.dp),
+                            modifier = Modifier.size(36.dp),
                             painter = painterResource(id = R.drawable.ic_phone_call),
-                            tint= purple500,
+                            tint = purple500,
                             contentDescription = ""
                         )
                     }
-
                 }
             }
         },
@@ -121,13 +135,8 @@ fun PupDetails(pet: PupModel, navigateBack: () -> Unit) {
                                     contentDescription = ""
                                 )
                             }
-
                         }
-
-
                     }
-
-
                 }
 
                 Column(
@@ -174,19 +183,12 @@ fun PupDetails(pet: PupModel, navigateBack: () -> Unit) {
                     }
                     Text(
                         text = pet.description,
-                        style = MaterialTheme.typography.body2.copy(color = MaterialTheme.colors.onPrimary,lineHeight = 22.sp),
+                        style = MaterialTheme.typography.body2.copy(color = MaterialTheme.colors.onPrimary, lineHeight = 22.sp),
                         modifier = Modifier.padding(10.dp),
                     )
                     Spacer(modifier = Modifier.height(60.dp))
-
-
                 }
-
-
             }
         },
     )
-
 }
-
-

@@ -49,11 +49,10 @@ val FakePuppies = listOf(
         owner = "Ms. Tina",
         isLiked = false,
 
-        ),
+    ),
     PupModel(
         id = "2",
         isLiked = true,
-
 
         age = "2 years",
         name = "Magnus",
@@ -73,7 +72,6 @@ val FakePuppies = listOf(
     PupModel(
         id = "3",
         isLiked = false,
-
 
         age = "2 years",
         name = "Lobo",
@@ -125,7 +123,6 @@ val FakePuppies = listOf(
 
     ),
 
-
     PupModel(
         id = "6",
         isLiked = false,
@@ -148,7 +145,6 @@ val FakePuppies = listOf(
     PupModel(
         id = "7",
         isLiked = false,
-
 
         age = "2 years",
         name = "Thea",
@@ -198,7 +194,6 @@ val FakePuppies = listOf(
         intelligentLevel = 8,
         owner = "Ms. Tina"
     ),
-
 
     PupModel(
         id = "10",
@@ -365,4 +360,3 @@ val FakePuppies = listOf(
         description = "Developed in England in the 1830s, the Dutch is one of the most popular breeds. Socializing is key for this energetic rabbit, who can become depressed if it spends too much time in its cage. Thanks to its easygoing attitude, children are more than welcomed to care for it.",
     )
 )
-

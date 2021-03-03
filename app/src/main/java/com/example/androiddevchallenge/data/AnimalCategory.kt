@@ -22,8 +22,6 @@ enum class AnimalCategory(val value: String) {
     CAT("Cat"),
     PARROT("Parrot"),
     BUNNY("Bunny"),
-
-
 }
 
 fun getAllAnimalCategory(): List<AnimalCategory> {
@@ -33,7 +31,6 @@ fun getAllAnimalCategory(): List<AnimalCategory> {
         AnimalCategory.PARROT,
         AnimalCategory.BUNNY,
     )
-
 }
 
 fun getAnimalCategory(value: String): AnimalCategory? {

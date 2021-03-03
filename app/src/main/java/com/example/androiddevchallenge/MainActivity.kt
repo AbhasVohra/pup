@@ -21,12 +21,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.data.FakePuppies
 import com.example.androiddevchallenge.ui.screen.PupDetails
 import com.example.androiddevchallenge.ui.screen.PupList
 import com.example.androiddevchallenge.ui.theme.MyTheme
-import androidx.navigation.compose.navigate
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +49,8 @@ fun MyApp() {
                 pupList = FakePuppies,
                 navigateToDetailsScreen = { pet ->
                     navController.navigate(Navigation.Details.title + "/${pet.id}")
-                })
+                }
+            )
         }
         composable(Navigation.Details.title + "/{id}") { backStackEntry ->
             val petId = backStackEntry.arguments?.getString("id")
@@ -66,25 +67,23 @@ fun MyApp() {
 //    }
 }
 
+sealed class Navigation(val title: String) {
+    object PupList : Navigation("PupList")
+    object Details : Navigation("Details")
+}
 
-    sealed class Navigation(val title: String) {
-        object PupList : Navigation("PupList")
-        object Details : Navigation("Details")
-    }
-
-
-//@Preview("Light Theme", widthDp = 360, heightDp = 640)
-//@Composable
-//fun LightPreview() {
+// @Preview("Light Theme", widthDp = 360, heightDp = 640)
+// @Composable
+// fun LightPreview() {
 //    MyTheme {
 //        MyApp()
 //    }
-//}
+// }
 //
-//@Preview("Dark Theme", widthDp = 360, heightDp = 640)
-//@Composable
-//fun DarkPreview() {
+// @Preview("Dark Theme", widthDp = 360, heightDp = 640)
+// @Composable
+// fun DarkPreview() {
 //    MyTheme(darkTheme = true) {
 //        MyApp()
 //    }
-//}
+// }

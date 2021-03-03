@@ -15,7 +15,6 @@
  */
 package com.example.androiddevchallenge.utils
 
-
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
@@ -33,38 +32,36 @@ fun loadImage(url: String, @DrawableRes defaultImage: Int): MutableState<Bitmap?
     Glide.with(LocalContext.current).asBitmap().load(defaultImage)
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                bitmapState.value =resource
+                bitmapState.value = resource
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {
             }
         })
-    Glide.with(LocalContext.current).asBitmap().load(url )
+    Glide.with(LocalContext.current).asBitmap().load(url)
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                bitmapState.value =resource
+                bitmapState.value = resource
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {
             }
         })
-    return  bitmapState
+    return bitmapState
 }
 
-
-
 @Composable
-fun loadImageDrawable( @DrawableRes defaultImage: Int): MutableState<Bitmap?> {
+fun loadImageDrawable(@DrawableRes defaultImage: Int): MutableState<Bitmap?> {
     val bitmapState: MutableState<Bitmap?> = mutableStateOf(null)
     Glide.with(LocalContext.current).asBitmap().load(defaultImage)
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                bitmapState.value =resource
+                bitmapState.value = resource
             }
 
             override fun onLoadCleared(placeholder: Drawable?) {
             }
         })
 
-    return  bitmapState
+    return bitmapState
 }
