@@ -18,12 +18,15 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.androiddevchallenge.data.FakePuppies
+import com.example.androiddevchallenge.ui.screen.PupDetails
+import com.example.androiddevchallenge.ui.screen.PupList
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import androidx.navigation.compose.navigate
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,23 +42,49 @@ class MainActivity : AppCompatActivity() {
 // Start building your app here!
 @Composable
 fun MyApp() {
-    Surface(color = MaterialTheme.colors.background) {
-        Text(text = "Ready... Set... GO!")
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = Navigation.PupList.title) {
+        composable(Navigation.PupList.title) {
+            PupList(
+                pupList = FakePuppies,
+                navigateToDetailsScreen = { pet ->
+                    navController.navigate(Navigation.Details.title + "/${pet.id}")
+                })
+        }
+        composable(Navigation.Details.title + "/{id}") { backStackEntry ->
+            val petId = backStackEntry.arguments?.getString("id")
+            val doggo = FakePuppies.find { it.id == petId }
+                ?: throw IllegalStateException("Doggo not found")
+            PupDetails(
+                pet = doggo,
+                navigateBack = { navController.popBackStack() }
+            )
+        }
     }
+//    Surface(color = MaterialTheme.colors.background) {
+//        PupList()
+//    }
 }
 
-@Preview("Light Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun LightPreview() {
-    MyTheme {
-        MyApp()
-    }
-}
 
-@Preview("Dark Theme", widthDp = 360, heightDp = 640)
-@Composable
-fun DarkPreview() {
-    MyTheme(darkTheme = true) {
-        MyApp()
+    sealed class Navigation(val title: String) {
+        object PupList : Navigation("PupList")
+        object Details : Navigation("Details")
     }
-}
+
+
+//@Preview("Light Theme", widthDp = 360, heightDp = 640)
+//@Composable
+//fun LightPreview() {
+//    MyTheme {
+//        MyApp()
+//    }
+//}
+//
+//@Preview("Dark Theme", widthDp = 360, heightDp = 640)
+//@Composable
+//fun DarkPreview() {
+//    MyTheme(darkTheme = true) {
+//        MyApp()
+//    }
+//}
